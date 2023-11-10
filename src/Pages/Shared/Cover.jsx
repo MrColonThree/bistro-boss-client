@@ -1,6 +1,5 @@
 import { Parallax } from "react-parallax";
 const Cover = ({ img, title }) => {
-  console.log(img);
   return (
     <Parallax
       blur={{ min: -50, max: 50 }}
@@ -8,7 +7,6 @@ const Cover = ({ img, title }) => {
       bgImageAlt="the menu"
       strength={-200}
     >
-      {" "}
       <div className="hero h-[700px]">
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">

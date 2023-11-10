@@ -9,5 +9,13 @@
 }
 
 .cinzel {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
+}
+
+.custom-pagination-bullet {
+  @apply inline-block w-4 h-4 mx-2 bg-blue-500 rounded-full;
+}
+
+.custom-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: #ff6347;
 }
