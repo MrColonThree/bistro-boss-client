@@ -7,7 +7,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive, isPending }) =>
-            isPending ? "" : isActive && "text-[#EEFF25]"
+            isPending ? "" : isActive ? "text-[#EEFF25]" : "undefined"
           }
         >
           Home
@@ -17,7 +17,7 @@ const Navbar = () => {
         <NavLink
           to="/contact"
           className={({ isActive, isPending }) =>
-            isPending ? "" : isActive && "text-[#EEFF25]"
+            isPending ? "" : isActive ? "text-[#EEFF25]" : "undefined"
           }
         >
           Contact Us
@@ -27,7 +27,7 @@ const Navbar = () => {
         <NavLink
           to="/dashboard"
           className={({ isActive, isPending }) =>
-            isPending ? "" : isActive && "text-[#EEFF25]"
+            isPending ? "" : isActive ? "text-[#EEFF25]" : "undefined"
           }
         >
           Dashboard
@@ -37,7 +37,7 @@ const Navbar = () => {
         <NavLink
           to="/menu"
           className={({ isActive, isPending }) =>
-            isPending ? "" : isActive && "text-[#EEFF25]"
+            isPending ? "" : isActive ? "text-[#EEFF25]" : "undefined"
           }
         >
           Our Menu
@@ -47,7 +47,7 @@ const Navbar = () => {
         <NavLink
           to="/shop"
           className={({ isActive, isPending }) =>
-            isPending ? "" : isActive && "text-[#EEFF25]"
+            isPending ? "" : isActive ? "text-[#EEFF25]" : "undefined"
           }
         >
           Our Shop
@@ -57,7 +57,7 @@ const Navbar = () => {
         <NavLink
           to="/cart"
           className={({ isActive, isPending }) =>
-            isPending ? "" : isActive && "text-[#EEFF25]"
+            isPending ? "" : isActive ? "text-[#EEFF25]" : "undefined"
           }
         >
           Cart
@@ -67,7 +67,7 @@ const Navbar = () => {
         <NavLink
           to="/signIn"
           className={({ isActive, isPending }) =>
-            isPending ? "text-white" : isActive && "text-[#EEFF25]"
+            isPending ? "" : isActive ? "text-[#EEFF25]" : "undefined"
           }
         >
           SignIn

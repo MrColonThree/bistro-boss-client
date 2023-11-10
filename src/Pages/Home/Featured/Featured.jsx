@@ -20,9 +20,6 @@ const Featured = () => {
             magni labore dolor assumenda dolores?
           </p>
           <button
-            onClick={() => {
-              console.log("ok");
-            }}
             className="btn btn-outline border-0 border-b-4"
           >
             Order now
