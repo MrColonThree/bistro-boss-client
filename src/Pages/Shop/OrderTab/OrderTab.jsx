@@ -1,24 +1,32 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import FoodCard from "../../../Components/FoodCard/FoodCard";
+import { useState } from "react";
+
 const OrderTab = ({ items }) => {
   const cardsPerPage = 6;
   const totalSlides = Math.ceil(items.length / cardsPerPage);
   const slides = Array.from({ length: totalSlides }, (_, index) => index);
-  const pagination = {
-    clickable: true,
-    renderBullet: function (index, className) {
-      return `<span class="${className}">${index + 1} </span>`;
-    },
+  const [swiper, setSwiper] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const handlePaginationClick = (index) => {
+    if (swiper) {
+      swiper.slideTo(index);
+      setActiveIndex(index);
+    }
   };
+
   return (
     <div>
       <Swiper
-        pagination={pagination}
-        modules={[Pagination]}
         className="mySwiper"
+        onSwiper={(swiperInstance) => {
+          setSwiper(swiperInstance);
+        }}
+        onSlideChange={(swiperInstance) => {
+          setActiveIndex(swiperInstance.activeIndex);
+        }}
       >
         {slides.map((slideIndex) => (
           <SwiperSlide key={slideIndex}>
@@ -34,6 +42,19 @@ const OrderTab = ({ items }) => {
             </div>
           </SwiperSlide>
         ))}
+        <div className="flex justify-center mt-4">
+          {slides.map((slideIndex) => (
+            <button
+              key={slideIndex}
+              className={`cursor-pointer text-lg border border-black font-bold rounded-full mx-2 py-1 px-3 ${
+                activeIndex === slideIndex ? "bg-yellow-600" : "bg-slate-200"
+              }`}
+              onClick={() => handlePaginationClick(slideIndex)}
+            >
+              {slideIndex + 1}
+            </button>
+          ))}
+        </div>
       </Swiper>
     </div>
   );

@@ -10,7 +10,7 @@ import OrderTab from "./OrderTab/OrderTab";
 const Shop = () => {
   const categories = ["salad", "pizza", "soup", "dessert", "drinks"];
   const { category } = useParams();
-  const initialIndex = categories.indexOf(category);
+  const initialIndex = categories.indexOf(category || "salad");
   const [tabIndex, setTabIndex] = useState(initialIndex);
   const [menu] = useMenu();
 
@@ -19,7 +19,7 @@ const Shop = () => {
   const salad = menu.filter((item) => item.category === "salad");
   const pizza = menu.filter((item) => item.category === "pizza");
   const drinks = menu.filter((item) => item.category === "drinks");
-  
+  const [activeIndex, setActiveIndex] = useState(tabIndex);
   return (
     <div className="">
       <Helmet>
@@ -29,14 +29,25 @@ const Shop = () => {
       <Tabs
         className="text-center my-20 px-5"
         defaultIndex={tabIndex}
-        onSelect={() => setTabIndex(initialIndex)}
+        onSelect={(index) => {
+          setTabIndex(index);
+          setActiveIndex(index);
+        }}
       >
-        <TabList>
-          <Tab>Salad</Tab>
-          <Tab>Pizza</Tab>
-          <Tab>Soup</Tab>
-          <Tab>Dessert</Tab>
-          <Tab>Drinks</Tab>
+        <TabList className="flex justify-center items-center gap-5">
+          {categories.map((category, index) => (
+            <Tab key={index} className="border-none">
+              <button
+                className={`uppercase font-bold text-lg  pb-1 border-b-4 border-transparent hover:border-yellow-600 hover:text-yellow-600 ${
+                  activeIndex === index
+                    ? "border-yellow-600 text-yellow-600"
+                    : ""
+                }`}
+              >
+                {category}
+              </button>
+            </Tab>
+          ))}
         </TabList>
         <TabPanel>
           <OrderTab items={salad} />

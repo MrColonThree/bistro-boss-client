@@ -103,9 +103,9 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <Link className="text-xl uppercase text-white">
-            <p className="font-bold">Bistro Boss</p>
-            <p className="tracking-widest">restaurant</p>
+          <Link className=" uppercase text-white">
+            <p className="font-bold text-2xl">Bistro Boss</p>
+            <p className="tracking-[3.5px] text-xl">restaurant</p>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
