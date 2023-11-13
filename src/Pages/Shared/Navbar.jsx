@@ -1,9 +1,17 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const navLinks = (
     <>
-      <li className="text-xl font-extrabold uppercase text-white">
+      <li className="text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
         <NavLink
           to="/"
           className={({ isActive, isPending }) =>
@@ -13,7 +21,7 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      <li className="text-xl font-extrabold uppercase text-white">
+      <li className="text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
         <NavLink
           to="/contact"
           className={({ isActive, isPending }) =>
@@ -23,7 +31,7 @@ const Navbar = () => {
           Contact Us
         </NavLink>
       </li>
-      <li className="text-xl font-extrabold uppercase text-white">
+      <li className="text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
         <NavLink
           to="/dashboard"
           className={({ isActive, isPending }) =>
@@ -33,7 +41,7 @@ const Navbar = () => {
           Dashboard
         </NavLink>
       </li>
-      <li className="text-xl font-extrabold uppercase text-white">
+      <li className="text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
         <NavLink
           to="/menu"
           className={({ isActive, isPending }) =>
@@ -43,7 +51,7 @@ const Navbar = () => {
           Our Menu
         </NavLink>
       </li>
-      <li className="text-xl font-extrabold uppercase text-white">
+      <li className="text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
         <NavLink
           to="/shop"
           className={({ isActive, isPending }) =>
@@ -53,7 +61,7 @@ const Navbar = () => {
           Our Shop
         </NavLink>
       </li>
-      <li className="text-xl font-extrabold uppercase text-white">
+      <li className="text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
         <NavLink
           to="/cart"
           className={({ isActive, isPending }) =>
@@ -63,16 +71,18 @@ const Navbar = () => {
           Cart
         </NavLink>
       </li>
-      <li className="text-xl font-extrabold uppercase text-white">
-        <NavLink
-          to="/signIn"
-          className={({ isActive, isPending }) =>
-            isPending ? "" : isActive ? "text-[#EEFF25]" : "undefined"
-          }
-        >
-          SignIn
-        </NavLink>
-      </li>
+      {/* {!user && (
+        <li className="lg:hidden text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
+          <NavLink
+            to="/signIn"
+            className={({ isActive, isPending }) =>
+              isPending ? "" : isActive ? "text-[#EEFF25]" : "undefined"
+            }
+          >
+            Sign In
+          </NavLink>
+        </li>
+      )} */}
     </>
   );
   return (
@@ -86,7 +96,7 @@ const Navbar = () => {
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke="white"
               >
                 <path
                   strokeLinecap="round"
@@ -98,7 +108,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className=" menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className=" menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black bg-opacity-50 rounded-box w-52"
             >
               {navLinks}
             </ul>
@@ -112,7 +122,27 @@ const Navbar = () => {
           <ul className="menu-horizontal px-1 gap-7">{navLinks}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          {user ? (
+            <>
+              <button
+                className="md:text-xl font-extrabold uppercase bg-[#EEFF25] px-2  py-1 rounded-xl hover:text-white hover:bg-lime-500"
+                onClick={handleLogOut}
+              >
+                Log Out
+              </button>
+              <img
+                className="h-12 w-12 rounded-full ml-2"
+                src={user.photoURL}
+                alt=""
+              />
+            </>
+          ) : (
+            <Link to="/signIn">
+              <button className="md:text-xl font-extrabold uppercase bg-[#EEFF25] px-2 md:px-4 py-1 rounded-xl hover:text-white hover:bg-lime-500">
+                Sign In
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </>

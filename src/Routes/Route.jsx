@@ -36,18 +36,18 @@ const Route = createBrowserRouter([
         element: <Shop />,
       },
       {
-        path: "/signIn",
-        element: <SignIn />,
-      },
-      {
-        path: "/signUp",
-        element: <SignUp />,
-      },
-      {
         path: "/cart",
         element: <Cart />,
       },
     ],
+  },
+  {
+    path: "/signIn",
+    element: <SignIn />,
+  },
+  {
+    path: "/signUp",
+    element: <SignUp />,
   },
 ]);
 
