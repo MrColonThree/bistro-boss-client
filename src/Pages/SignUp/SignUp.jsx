@@ -1,12 +1,12 @@
-import { useContext } from "react";
 import signInImg from "../../assets/others/authentication2.png";
-import { AuthContext } from "../../Providers/AuthProvider";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 const SignUp = () => {
-  const { signUp,updateUserProfile } = useContext(AuthContext);
+  const { signUp, updateUserProfile } = useAuth();
   const navigate = useNavigate();
   const {
     register,

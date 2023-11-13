@@ -1,9 +1,12 @@
-import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../Providers/AuthProvider";
 
+import { FaShoppingCart } from "react-icons/fa";
+import useAuth from "../../Hooks/useAuth";
+import useCart from "../../Hooks/useCart";
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
+  const [cart] = useCart();
+  console.log(cart);
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -61,16 +64,23 @@ const Navbar = () => {
           Our Shop
         </NavLink>
       </li>
-      <li className="text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
-        <NavLink
-          to="/cart"
-          className={({ isActive, isPending }) =>
-            isPending ? "" : isActive ? "text-[#EEFF25]" : "undefined"
-          }
-        >
-          Cart
-        </NavLink>
-      </li>
+      {user && (
+        <li className="text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
+          <NavLink
+            to="/cart"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? ""
+                : isActive
+                ? "text-[#EEFF25] flex gap-1"
+                : "flex gap-1"
+            }
+          >
+            <FaShoppingCart />
+            <div className="badge badge-secondary">{cart.length}</div>
+          </NavLink>
+        </li>
+      )}
       {/* {!user && (
         <li className="lg:hidden text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
           <NavLink
@@ -119,7 +129,9 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu-horizontal px-1 gap-7">{navLinks}</ul>
+          <ul className="menu-horizontal px-1 gap-7 items-center">
+            {navLinks}
+          </ul>
         </div>
         <div className="navbar-end">
           {user ? (

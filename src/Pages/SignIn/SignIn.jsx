@@ -1,17 +1,18 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import signInImg from "../../assets/others/authentication2.png";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { AuthContext } from "../../Providers/AuthProvider";
+
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 const SignIn = () => {
   const [disabled, setDisabled] = useState(true);
-  const { signIn } = useContext(AuthContext);
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   useEffect(() => {
