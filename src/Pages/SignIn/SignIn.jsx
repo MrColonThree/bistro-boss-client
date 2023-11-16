@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 const SignIn = () => {
   const [disabled, setDisabled] = useState(true);
   const { signIn } = useAuth();
@@ -114,6 +115,7 @@ const SignIn = () => {
                 Create a New Account SignUp
               </Link>
             </p>
+            <SocialLogin />
           </div>
         </div>
       </div>

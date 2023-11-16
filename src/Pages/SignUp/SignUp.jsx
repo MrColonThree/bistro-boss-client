@@ -5,9 +5,12 @@ import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 const SignUp = () => {
   const { signUp, updateUserProfile } = useAuth();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -23,27 +26,19 @@ const SignUp = () => {
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
           const saveUser = { name: data.name, email: data.email };
-          fetch("http://localhost:5000/users", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(saveUser),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.insertedId) {
-                reset();
-                Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "User created successfully.",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-                navigate("/");
-              }
-            });
+          axiosPublic.post("/users", saveUser).then((res) => {
+            if (res.data.insertedId) {
+              reset();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User created successfully.",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/");
+            }
+          });
         })
         .catch((error) => console.log(error));
     });
@@ -156,6 +151,7 @@ const SignUp = () => {
               <Link to="/signIn" className="font-semibold">
                 Go to sign in
               </Link>
+              <SocialLogin />
             </p>
           </div>
         </div>

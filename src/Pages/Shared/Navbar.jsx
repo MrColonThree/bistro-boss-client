@@ -34,7 +34,7 @@ const Navbar = () => {
           Contact Us
         </NavLink>
       </li>
-      <li className="text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
+      {/* <li className="text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
         <NavLink
           to="/dashboard"
           className={({ isActive, isPending }) =>
@@ -43,7 +43,7 @@ const Navbar = () => {
         >
           Dashboard
         </NavLink>
-      </li>
+      </li> */}
       <li className="text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
         <NavLink
           to="/menu"
@@ -67,7 +67,7 @@ const Navbar = () => {
       {user && (
         <li className="text-xl font-extrabold uppercase text-white hover:text-[#EEFF25]">
           <NavLink
-            to="/cart"
+            to="/dashboard/cart"
             className={({ isActive, isPending }) =>
               isPending
                 ? ""

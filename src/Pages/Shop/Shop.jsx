@@ -18,6 +18,7 @@ const Shop = () => {
   const salad = menu.filter((item) => item.category === "salad");
   const pizza = menu.filter((item) => item.category === "pizza");
   const drinks = menu.filter((item) => item.category === "drinks");
+
   const [activeIndex, setActiveIndex] = useState(tabIndex);
   return (
     <div className="">

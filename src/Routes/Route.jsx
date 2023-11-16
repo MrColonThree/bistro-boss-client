@@ -2,13 +2,15 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 
 import Contact from "../Pages/Contact/Contact";
-import Dashboard from "../Pages/Dashboard/Dashboard";
 import Menu from "../Pages/Menu/Menu";
 import Shop from "../Pages/Shop/Shop";
 import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp";
 import Cart from "../Pages/Cart/Cart";
 import Home from "../Pages/Home/Home/Home";
+import Dashboard from "../Layout/Dashboard";
+import PrivateRoute from "./PrivateRoute";
+import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers";
 
 const Route = createBrowserRouter([
   {
@@ -24,20 +26,12 @@ const Route = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
-      {
         path: "/menu",
         element: <Menu />,
       },
       {
         path: "/shop/:category?",
         element: <Shop />,
-      },
-      {
-        path: "/cart",
-        element: <Cart />,
       },
     ],
   },
@@ -48,6 +42,25 @@ const Route = createBrowserRouter([
   {
     path: "/signUp",
     element: <SignUp />,
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      // admin routes
+      {
+        path: "users",
+        element: <AllUsers />,
+      },
+    ],
   },
 ]);
 

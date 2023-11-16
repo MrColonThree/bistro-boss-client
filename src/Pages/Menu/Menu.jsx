@@ -24,7 +24,7 @@ const Menu = () => {
       {/* Main civer */}
       <SectionTitle subHeading={"Don't miss"} heading={"Today's offer"} />
       {/* offered menu items */}
-      <MenuCategory items={offered} />
+      <MenuCategory items={offered}/>
       {/* dessert menu items */}
       <MenuCategory items={dessert} title={"dessert"} coverBg={dessertBg} />
       {/* Pizza menu items */}
